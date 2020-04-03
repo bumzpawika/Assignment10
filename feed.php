@@ -5,16 +5,12 @@ session_start();
 		header("location: index.html");
 		exit(0);
 	}
-	if(!isset($_FILES["fileToUpload"])){
-		$_FILES["fileToUpload"] = "avatar.png";
-	}
 $username = $_SESSION["username"];
-$imgfile = $_FILES["fileToUpload"];
+
 ?>
 
 <script type="text/javascript"> 
-		var username = "<?php echo $username?>";
-		var imgfile = "<?php echo $imgfile?>";
+	var username = "<?php echo $username?>";
 </script> 
 
 <!DOCTYPE html>
@@ -30,7 +26,7 @@ $imgfile = $_FILES["fileToUpload"];
 			<div class="item1">
 				<div id="browsePic">
 					<div id="displayPic">
-						<img src= <?php echo "img/".$imgfile ?> alt="">
+						<img id="Profile" alt="">
 					</div>
 					<form action="js/uploadPic.php" method="post" id="formId" enctype="multipart/form-data">
 						<input type="file" id="fileField" name="fileToUpload" value="fileToUpload" placeholder="" class="hidden">

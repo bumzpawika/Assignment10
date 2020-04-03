@@ -4,6 +4,7 @@ var jdata;
 var imgdata;
 
 function pageLoad(){
+	// alert(imgfile);
 	document.getElementById('displayPic').onclick = fileUpload;
 	document.getElementById('fileField').onchange = fileSubmit;
 	document.getElementById('postbutton').onclick = getData;
@@ -20,18 +21,20 @@ function fileSubmit(){
 	document.getElementById('formId').submit()
 	var key = Object.keys(imgdata)
 	for (var j = 0; j < key.length; j++) {
-		var user = imgdata[key[index]].username
+		var user = imgdata[key[index]].username;
 		var user1 = username;
 		if(user == user1){
-			imgdata[key[j]].img = imgfile;
+			var url = "img/"+imgdata[key[j]].img;
+			console.log(url);
+			document.getElementById("Profile").src = url;
 			// alert(imgdata);
 		}
+
 	}
 	var x = new XMLHttpRequest();
 	var jsonData = JSON.stringify(imgdata)
 	x.open("POST", "js/writeImage.php?data=" + jsonData)
 	x.send()
-	
 }
 
 function getData(){

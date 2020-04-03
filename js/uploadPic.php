@@ -28,7 +28,7 @@
     else{
         if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],"C:/xampp/htdocs/assignment10/".$target_file)){
             echo "The file ". basename($_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            
+            $imgfile = basename($_FILES["fileToUpload"]["name"]);
             header('Location: ../feed.php');
         }
         else {
