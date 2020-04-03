@@ -18,19 +18,31 @@ function fileUpload(){
 
 function fileSubmit(){
 	//มีการเปลี่ยนแปลงไฟล์
-	document.getElementById('formId').submit()
-	var key = Object.keys(imgdata)
-	for (var j = 0; j < key.length; j++) {
-		var user = imgdata[key[index]].username;
-		var user1 = username;
-		if(user == user1){
-			var url = "img/"+imgdata[key[j]].img;
-			console.log(url);
-			document.getElementById("Profile").src = url;
-			// alert(imgdata);
-		}
 
+	document.getElementById('formId').submit()
+
+	var y=new XMLHttpRequest();
+	y.open("GET","js/userDB.json");
+	y.onload = function(){
+		imgdata= JSON.parse(y.responseText);
+		var key = Object.keys(imgdata);
+		alert(key.length);
+		for (var j = 0; j < key.length; j++) {
+			var user = imgdata[key[j]].username;
+			var user1 = username;
+			alert(j);
+			if(user == user1){
+				var url = "img/"+imgdata[key[j]].img;
+				console.log(url);
+				document.getElementById("Profile").src = url;
+				alert(url);
+			}
+		}
 	}
+	y.send();
+
+	
+	
 	var x = new XMLHttpRequest();
 	var jsonData = JSON.stringify(imgdata)
 	x.open("POST", "js/writeImage.php?data=" + jsonData)
